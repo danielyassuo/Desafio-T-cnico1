@@ -4,6 +4,7 @@ package com.luizalebs.comunicacao_api.business.service;
 import com.luizalebs.comunicacao_api.api.dto.out.LoginOutDTO;
 import com.luizalebs.comunicacao_api.api.dto.out.NotificacaoOutDTO;
 import com.luizalebs.comunicacao_api.business.converter.ComunicacaoConverter;
+import com.luizalebs.comunicacao_api.business.converter.Converter;
 import com.luizalebs.comunicacao_api.infraestructure.enums.StatusEnvioEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class CronService {
     private final NotificacaoService notificacaoService;
     private final ComunicacaoService comunicacaoService;
     private final UsuarioService usuarioService;
-    private final ComunicacaoConverter converter;
+    private final Converter converterMap;
 
     @Value("${usuario.email}")
     private String email;
@@ -37,7 +38,7 @@ public class CronService {
         String token = login(converterParaLogin());
         LocalDateTime horaFutura = LocalDateTime.now().plusHours(1);
         LocalDateTime horaMaisCinco = LocalDateTime.now().plusHours(5);
-        List<NotificacaoOutDTO> listaMensagens =  converter.paraListNotif(comunicacaoService.buscarMensagensPorPeriodo(horaFutura, horaMaisCinco, token));
+        List<NotificacaoOutDTO> listaMensagens =  converterMap.paraListNotificacao(comunicacaoService.buscarMensagensPorPeriodo(horaFutura, horaMaisCinco, token));
         log.info("Mensagens Encontradas  : " + listaMensagens);
 
         for(NotificacaoOutDTO listaMensagem : listaMensagens) {
