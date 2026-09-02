@@ -1,15 +1,21 @@
 package com.luizalebs.comunicacao_api.api.controller;
 
-import com.luizalebs.comunicacao_api.api.dto.ComunicacaoInDTO;
-import com.luizalebs.comunicacao_api.api.dto.ComunicacaoOutDTO;
+import com.luizalebs.comunicacao_api.api.dto.in.ComunicacaoInDTO;
+import com.luizalebs.comunicacao_api.api.dto.out.ComunicacaoOutDTO;
+import com.luizalebs.comunicacao_api.api.dto.out.NotificacaoOutDTO;
 import com.luizalebs.comunicacao_api.business.service.ComunicacaoService;
 
 
+import com.luizalebs.comunicacao_api.business.service.NotificacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/comunicacao")
@@ -23,7 +29,7 @@ public class ComunicacaoController {
     }
 
     @PostMapping("/agendar")
-    @Operation(summary = "Agendar" , description = "Agenda uma tarefa")
+    @Operation(summary = "Agendar" , description = "Agenda uma mensagem")
     @ApiResponse(responseCode = "200", description = "Agendado com sucesso")
     @ApiResponse(responseCode = "409", description = "Conflito, mensagem agendada anteriormente")
     @ApiResponse(responseCode = "500", description = "Erro no Servidor")
@@ -49,4 +55,17 @@ public class ComunicacaoController {
     public ResponseEntity<ComunicacaoOutDTO> cancelarStatus(@RequestParam String emailDestinatario) {
         return ResponseEntity.ok(service.alterarStatusComunicacao(emailDestinatario));
     }
+
+    @GetMapping("/mensagem")
+    @Operation(summary = "Faz a busca de mensagens por periodo", description = "Busca Mensagens enviadas")
+    @ApiResponse(responseCode = "200", description = "mensagem encontrada com sucesso")
+    @ApiResponse(responseCode = "401", description = "mensagem nã oencontrada")
+    @ApiResponse(responseCode = "500", description = "Erro de servidor")
+    public ResponseEntity<List<ComunicacaoOutDTO>> buscarMensagensPorPeriodo (@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dataInicial,
+                                                                              @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dataFinal,
+                                                                              @RequestHeader(name = "Authorization") String token){
+        return ResponseEntity.ok(service.buscarMensagensPorPeriodo(dataInicial, dataFinal, token));
+    }
+
+
 }

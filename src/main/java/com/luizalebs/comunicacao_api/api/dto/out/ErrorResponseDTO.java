@@ -1,4 +1,4 @@
-package com.luizalebs.comunicacao_api.api.dto;
+package com.luizalebs.comunicacao_api.api.dto.out;
 
 
 import lombok.*;
