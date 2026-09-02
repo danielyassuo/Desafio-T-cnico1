@@ -4,7 +4,7 @@ package com.luizalebs.comunicacao_api.infraestructure.security;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.luizalebs.comunicacao_api.api.dto.ErrorResponseDTO;
+import com.luizalebs.comunicacao_api.api.dto.out.ErrorResponseDTO;
 import com.luizalebs.comunicacao_api.infraestructure.exceptions.ConflictException;
 import io.jsonwebtoken.ExpiredJwtException;
 

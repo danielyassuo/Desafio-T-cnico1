@@ -50,7 +50,13 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/webjars/**"
+                                "/webjars/**",
+                                "/comunicacao/**",
+                                "/usuario/login",
+                                "/usuario",
+                                "/usuario/endereco/**",
+                                "/endereco/**",
+                                "/usuario/**"
                         ).permitAll().anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
