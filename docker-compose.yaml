@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  usuarios :
+    build: ..\usuarios\usuarios
+    container_name: usuarios_api
+    ports:
+      - "1974:1974"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/db_usuario
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234567
+    depends_on:
+      - postgres
+  comunicacao_api :
+    build: .
+    container_name: comunicacao_api
+    ports:
+      - "1450:1450"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/comunicacao_db
+      - SPRING_DATASOURCE_USERNAME=developer
+      - SPRING_DATASOURCE_PASSWORD=1234567
+    depends_on:
+      mysql :
+        condition: service_healthy
+  notificacao :
+    build: ..\notificacao\notificacao
+    container_name: notificacao_api
+    ports:
+      - "1920:1920"
+  postgres :
+    image: postgres:latest
+    container_name: postgres
+    restart: no
+    environment:
+      POSTGRES_USER : postgres
+      POSTGRES_PASSWORD : 1234567
+      POSTGRES_DB : db_usuario
+    ports:
+      - "5432:5432"
+  mysql :
+    image: mysql:latest
+    container_name: mysql
+    restart: no
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234567
+      MYSQL_USER : developer
+      MYSQL_PASSWORD : 1234567
+      MYSQL_DATABASE : comunicacao_db
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234567" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
