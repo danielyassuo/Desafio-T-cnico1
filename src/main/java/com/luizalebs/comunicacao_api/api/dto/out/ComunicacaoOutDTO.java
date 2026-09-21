@@ -16,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @ToString
+@EqualsAndHashCode
 public class ComunicacaoOutDTO implements Serializable {
 
     private Long id;
