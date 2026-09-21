@@ -1,0 +1,16 @@
+com\luizalebs\comunicacao_api\TesteSimples.class
+com\luizalebs\comunicacao_api\api\responses\ErrorResponseDTOFixture.class
+com\luizalebs\comunicacao_api\business\ComunicacaoServiceTest.class
+com\luizalebs\comunicacao_api\api\requests\UsuarioInDTOFixture.class
+com\luizalebs\comunicacao_api\api\requests\EnderecoInDTOFixture.class
+com\luizalebs\comunicacao_api\TesteContexto.class
+com\luizalebs\comunicacao_api\api\responses\TelefoneOutDTOFixture.class
+com\luizalebs\comunicacao_api\ComunicacaoApiApplicationTests.class
+com\luizalebs\comunicacao_api\api\responses\LoginOutDTOFixture.class
+com\luizalebs\comunicacao_api\api\responses\ComunicacaoOutDTOFixture.class
+com\luizalebs\comunicacao_api\api\ComunicacaoControllerTest.class
+com\luizalebs\comunicacao_api\api\requests\ComunicacaoInDTOFixture.class
+com\luizalebs\comunicacao_api\api\requests\TelefoneInDTOFixture.class
+com\luizalebs\comunicacao_api\api\responses\EnderecoOutDTOFixture.class
+com\luizalebs\comunicacao_api\api\responses\NotificacaoOutDTOFIxture.class
+com\luizalebs\comunicacao_api\api\responses\UsuarioOutDTOFixture.class
