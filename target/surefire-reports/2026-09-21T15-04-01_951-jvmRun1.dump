@@ -1,0 +1,50 @@
+# Created at 2026-09-21T15:04:02.303
+System.exit() or native command error interrupted process checker.
+java.lang.IllegalStateException: Cannot use PPID 10352 process information. Going to use NOOP events.
+	at org.apache.maven.surefire.booter.PpidChecker.checkProcessInfo(PpidChecker.java:155)
+	at org.apache.maven.surefire.booter.PpidChecker.isProcessAlive(PpidChecker.java:116)
+	at org.apache.maven.surefire.booter.ForkedBooter$2.run(ForkedBooter.java:214)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+
+# Created at 2026-09-21T15:04:36.648
+java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.lang.StackTraceElement.of(StackTraceElement.java:559)
+	at java.base/java.lang.Throwable.getOurStackTrace(Throwable.java:866)
+	at java.base/java.lang.Throwable.getStackTrace(Throwable.java:858)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:79)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+	at ch.qos.logback.classic.spi.ThrowableProxy.<init>(ThrowableProxy.java:89)
+
+

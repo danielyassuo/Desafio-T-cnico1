@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.luizalebs.comunicacao_api.ComunicacaoApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.88 s <<< FAILURE! - in com.luizalebs.comunicacao_api.ComunicacaoApiApplicationTests
+contextLoads  Time elapsed: 1.515 s  <<< ERROR!
+java.lang.StackOverflowError
+
