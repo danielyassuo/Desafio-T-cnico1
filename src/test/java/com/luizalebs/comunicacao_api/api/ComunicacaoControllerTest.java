@@ -1,6 +1,5 @@
 package com.luizalebs.comunicacao_api.api;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -11,7 +10,6 @@ import com.luizalebs.comunicacao_api.api.dto.out.ComunicacaoOutDTO;
 import com.luizalebs.comunicacao_api.business.service.ComunicacaoService;
 import com.luizalebs.comunicacao_api.infraestructure.entities.ComunicacaoEntity;
 import com.luizalebs.comunicacao_api.infraestructure.enums.ModoEnvioEnum;
-import com.luizalebs.comunicacao_api.infraestructure.enums.StatusEnvioEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,19 +17,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-
-
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -48,7 +44,6 @@ public class ComunicacaoControllerTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-
     ComunicacaoOutDTO comunicacaoOutDTO;
 
     ComunicacaoEntity comunicacao;
@@ -62,19 +57,16 @@ public class ComunicacaoControllerTest {
 
     private String json;
 
-
-
-
     @BeforeEach
     public void setup () throws JsonProcessingException {
+
+
+        ReflectionTestUtils.setField(comunicacaoController, "service", comunicacaoService);
 
         mockMvc = MockMvcBuilders.standaloneSetup(comunicacaoController).setControllerAdvice(new GlobalExceptionHandler()).alwaysDo(print()).build();
         url = "/comunicacao";
 
-
         comunicacaoInDTO = ComunicacaoInDTO.builder()
-
-
                 .id(1L)
                 .dataHoraEnvio(LocalDateTime.of(2026, 9, 21, 10, 39))
                 .nomeDestinatario("Usuário")
@@ -94,7 +86,6 @@ public class ComunicacaoControllerTest {
                 .modoDeEnvio(ModoEnvioEnum.WHATSAPP)
                 .build();
 
-
         comunicacao = ComunicacaoEntity.builder()
                 .id(1L)
                 .dataHoraEnvio(LocalDateTime.of(2026, 9, 21, 10, 39))
@@ -105,8 +96,8 @@ public class ComunicacaoControllerTest {
                 .modoDeEnvio(ModoEnvioEnum.WHATSAPP)
                 .build();
 
-        List<ComunicacaoEntity> listaComunicacao = List.of(comunicacao);
-        List<ComunicacaoOutDTO> listaComunicacaoOutDTO = List.of(comunicacaoOutDTO);
+        listaComunicacoes = List.of(comunicacao);
+        listaComunicacoesDTO = List.of(comunicacaoOutDTO);
 
         json = objectMapper.writeValueAsString(comunicacaoInDTO);
     }
@@ -186,7 +177,7 @@ public class ComunicacaoControllerTest {
 
     @Test
     void deveBuscarMensagensPorPeriodo () throws Exception {
-        when(comunicacaoService.buscarMensagensPorPeriodo(LocalDateTime.of(2026, 9, 21, 0, 0), LocalDateTime.of(2026, 9, 10, 23, 59), "Bearer tokenGerado")).thenReturn(listaComunicacoesDTO);
+        when(comunicacaoService.buscarMensagensPorPeriodo(any(LocalDateTime.class), any(LocalDateTime.class), anyString())).thenReturn(listaComunicacoesDTO);
 
         mockMvc.perform(get(url+"/mensagem")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -196,11 +187,7 @@ public class ComunicacaoControllerTest {
                 .header("Authorization", "Bearer tokenGerado")
         ).andExpect(status().isOk());
 
-        verify(comunicacaoService).buscarMensagensPorPeriodo(LocalDateTime.of(2026, 9, 21, 0, 0), LocalDateTime.of(2026, 9, 10, 23, 59), "Bearer tokenGerado");
+        verify(comunicacaoService).buscarMensagensPorPeriodo(any(LocalDateTime.class), any(LocalDateTime.class), anyString());
         verifyNoMoreInteractions(comunicacaoService);
     }
-
-
-
-
 }

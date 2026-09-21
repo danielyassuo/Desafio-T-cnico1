@@ -10,6 +10,7 @@ import com.luizalebs.comunicacao_api.business.service.NotificacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +20,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comunicacao")
+@RequiredArgsConstructor
 @Tag(name = "Comunicacao", description = "Agendamento de mensagens")
 public class ComunicacaoController {
 
     private final ComunicacaoService service;
 
-    public ComunicacaoController(ComunicacaoService service) {
-        this.service = service;
-    }
+
 
     @PostMapping("/agendar")
     @Operation(summary = "Agendar" , description = "Agenda uma mensagem")

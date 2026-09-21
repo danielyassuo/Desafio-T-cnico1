@@ -1,6 +1,6 @@
-# Created at 2026-09-21T15:24:01.842
+# Created at 2026-09-21T18:01:50.259
 System.exit() or native command error interrupted process checker.
-java.lang.IllegalStateException: Cannot use PPID 37856 process information. Going to use NOOP events.
+java.lang.IllegalStateException: Cannot use PPID 43828 process information. Going to use NOOP events.
 	at org.apache.maven.surefire.booter.PpidChecker.checkProcessInfo(PpidChecker.java:155)
 	at org.apache.maven.surefire.booter.PpidChecker.isProcessAlive(PpidChecker.java:116)
 	at org.apache.maven.surefire.booter.ForkedBooter$2.run(ForkedBooter.java:214)
@@ -10,9 +10,5 @@ java.lang.IllegalStateException: Cannot use PPID 37856 process information. Goin
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-
-
-# Created at 2026-09-21T15:24:35.258
-java.lang.OutOfMemoryError: Java heap space
 
 
